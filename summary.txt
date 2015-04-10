@@ -1,0 +1,14 @@
+﻿Matthew Ecker
+Project 2 Summary
+
+	My project uses three Java classes; PostOfficeSimulation, PostalWorker, and Customer.
+PostOfficeSimulation all of the semaphores, customers and workers, and has a method for
+determining how long a thread should sleep based on its current task. PostalWorker contains
+the run method that simulates a postal worker, and customer works in a similar vein.
+	Most of the difficulties I encountered with this project involved making sure postal
+workers and customers would say things in the correct order, and print the correct numbers.
+I learned a lot about how to manage multiple semaphores, and by the end, implementing the
+scale was relatively easy.
+	The end result is a very stable and efficient post office simulator, which I am very
+proud of. It prints things in the correct order every time, and properly joins threads
+when they are finished. It also ensures mutual exclusion across several areas.

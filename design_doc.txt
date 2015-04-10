@@ -1,0 +1,50 @@
+﻿Matthew Ecker
+Project 2 Design Doc
+
+Semaphores:
+
+0	ArrayList done	- makes a semaphore for every customer to indicate their completion status
+10	capacity		- makes sure only ten customers are inside the post office
+3	servicing		- controls number of customers able to be helped at once
+0	ready			- lets worker know customer is ready
+1	FirstMutex		- protects global variable access
+0	ThirdMutex		- ensures customer requests assistance at appropriate time
+0	request			- forces customer to request service before worker can begin working
+1	scales			- ensures only one worker can use the scales at a time
+0	working			- determines whether a worker is currently helping a customer
+
+Pseudocode:
+
+	Postal Worker
+	
+		wait(ready)
+		read global variables
+		signal(ThirdMutex)
+		wait(request)
+		
+		if mailing a package
+			wait(scales)
+			sleep for task
+		else
+			sleep for task
+		
+		signal(done(customer))
+		signal(working)
+		signal(servicing)
+	
+	Customer
+	
+		wait(capacity)
+		wait(servicing)
+		wait(FirstMutex)
+		
+		read global variables
+		
+		signal(ThirdMutex)
+		
+		signal(request)
+		signal(FirstMutex)
+		
+		wait(done(customer))
+		signal(working)
+		signal(capacity)
